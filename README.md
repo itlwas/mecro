@@ -25,7 +25,7 @@ This is **a personal passion project** created because I loved using [Micro](htt
 ## Install & Build
 Requires Go 1.16+:
 ```bash
-git clone https://github.com/yourusername/mecro
+git clone https://github.com/itlwas/mecro
 cd mecro
 make build
 ```
