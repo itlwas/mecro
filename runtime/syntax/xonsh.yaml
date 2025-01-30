@@ -1,0 +1,14 @@
+filetype: "xonsh"
+detect:
+    filename: "\\.(xonshrc|(auto)?xsh)"
+rules:
+- include: "python"
+- include: "shell"
+- type:
+    start: "\\$"
+    end: "(\\s|\\.|$)"
+    rules: []
+- identifier: "\\b(aliases|events|completer|xontrib[^-]|timeit|scp-resume)\\b"
+- identifier: "\\b(xonfig|xonsh(-(reset|cat|uname|uptime))?|showcmd)\\b"
+- identifier: "\\b(xpip|printx|history|ipynb|trace|grep)\\b"
+- identifier: "\\b(source(-(bash|zsh|foreign))?)\\b"

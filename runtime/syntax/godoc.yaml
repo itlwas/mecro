@@ -1,0 +1,11 @@
+filetype: godoc
+detect:
+    filename: "\\.godoc$"
+    header: package.*import
+rules:
+    - preproc: "^[^ ].*"
+    - comment:
+        start: "//"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME):?"

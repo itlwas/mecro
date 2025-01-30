@@ -1,0 +1,29 @@
+filetype: makejail
+detect:
+    filename: "Makejail$|[^/]+\\.makejail$"
+rules:
+    - statement: "^[[:space:]]*(ADD|ARG|CLEAR|CMD|COPY|ENTRYPOINT|ENV|INCLUDE|MOUNT|PKG|RAW|REPLACE|RUN|SERVICE|SET|SYSRC|UMOUNT|USER|VAR|WORKDIR|EXEC|DESTROY|GLOBAL|DEVICE|LOGIN|OPTION|RESTART|STAGE|START|STOP|FROM)[[:space:]]?"
+    - identifier.var: "^[[:space:]]*(ARG|VAR|ENV)[[:space:]]?[^=]*"
+    - identifier.var: "\\$\\{[0-9A-Za-z_:!%&=+#~@*^$?, .\\-\\/\\[\\]]+\\}"
+    - identifier.var: "\\$[0-9A-Za-z_:!%&=+#~@*^$?,\\-\\[\\]]+"
+    - identifier.macro: "^[[:space:]]*%\\{([^\\}]+\\})+\\}?"
+    - identifier.macro: "[^%]%\\{[^\\}]+\\}"
+    - comment:
+        start: "#"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME):?"
+    - constant.string:
+        start: "\""
+        end: "\""
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+    - constant.string:
+        start: "'"
+        end: "'"
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+    - special: "--[[:alnum:]\\-]+"
+    - constant.specialChar: "\\$"

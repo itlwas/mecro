@@ -1,0 +1,38 @@
+filetype: rmd
+detect:
+    filename: "\\.Rmd$|\\.rmd$"
+    header: "^---"
+rules:
+    - comment: "^#.*$"
+    - special: "\\b(r|R)(\\s*\\()"
+    - statement: "\\b(if|else|for|while|repeat|in|next|break)\\b"
+    - preproc: "^---$"
+    - preproc: "^```{:\\w+"
+    - preproc: "^\\s*#\\s*\\w+:\\s*.*$"
+    - constant.string: "\"([^\"\\\\]|\\\\.)*\""
+    - constant.string: "'([^'\\\\]|\\\\.)*'"
+    - identifier: "\\b[A-Za-z_][A-Za-z0-9_.]*\\b"
+    - symbol: "[\\[\\]{}(),;]"
+    - type: "\\b(TRUE|FALSE|NA)\\b"
+    - constant.number: "\\b\\d+(\\.\\d+)?([eE][+-]?\\d+)?\\b"
+    - preproc.shebang: "^#!.*$"
+    - default:
+        start: "```"
+        end: "```"
+        rules:
+            - identifier: "\\w+"
+            - default:
+                start: "`"
+                end: "`"
+                rules:
+                    - identifier: "\\w+"
+    - default:
+        start: "<"
+        end: ">"
+        rules:
+            - identifier: "\\w+"
+    - default:
+        start: "\\[\\["
+        end: "\\]\\]"
+        rules:
+            - identifier: "[^\\]]+"

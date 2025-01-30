@@ -1,0 +1,33 @@
+filetype: bend
+detect:
+    filename: "\\.bend$"
+rules:
+    - statement: "\\b(def|switch|case|return|if|else|when|match|λ|Some|data|let|use|object|fold|open|do|bind|Name|identity|Bool|ask|with)\\b"
+    - symbol.operator: "\\b(bend|None|Nil|Result|type|lambda)\\b"
+    - identifier: "def [a-zA-Z_0-9]+"
+    - statement: "\\b(Node|Leaf|Tree)\\b"
+    - constant: "\\b(true|false|True|False)\\b"
+    - type: "\\b(ud|str|int|float|obj|fib|bool|pat|type|any)\\b\\??"
+    - symbol.brackets: "([(){}]|\\[|\\])"
+    - symbol.operator: "(\\+|\\-|\\/|%|\\*|>>|<<|\\\\|\\^|&|~|!>)"
+    - symbol.operator: "(==|!=|<=?|>=?|\\bis\\b|\\?\\?)"
+    - constant.number: "\\b[0-9](_?[0-9])*(\\.([0-9](_?[0-9])*)?)?(e[0-9](_?[0-9])*)?\\b"
+    - constant.number: "\\b0b(_?[01])+\\b"
+    - constant.number: "\\b0x(_?[0-9a-fA-F])+\\b"
+    - constant.string:
+        start: "\""
+        end: "(\"|$)"
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+    - constant.string:
+        start: "'"
+        end: "('|$)"
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+    - comment:
+        start: "\\#"
+        end: "$"
+        rules:
+            - todo: "(TODO|FIXME|HACK|BUG|NOTE|FAQ|MNEMONIC|REQ|RFE|IDEA|PORT|\\?\\?\\?|!!!|GLOSS|SEE|TODOC|STAT|RVD|CRED):?"

@@ -1,0 +1,28 @@
+filetype: "gherkin"
+detect:
+    filename: "\\.feature$"
+    header: "\\#( +)?language:( +)?pt"
+rules:
+    - statement:
+        start: "\\b(Funcionalidade|Exemplos|Contexto|Caracter[ií]stica|(Cen[aá]rio de )?Fundo|Cen[aá]rios?|(Delinea[cç][aã]o|Esquema) do Cen[aá]rio)"
+        end: ":"
+        rules: []
+    - special:
+        start: "\\b(Dad[oa]s?|Quando|Ent[aã]o|Mas|E)"
+        end: "\\b"
+        rules: []
+    - identifier: "\\s?@[A-Za-z0-9_\\-].+\\s?"
+    - "#e5a467": "\\s?(\\|.+$)|(\\[.+])"
+    - red: '(\\$\\{.*?\\})|(@\\{.*?\\})'
+    - symbol: "\\[.+]"
+    - "#55b3c6":
+        start: "\\['.+"
+        end: "'].?"
+        rules: []
+    - constant.string: "'.+'"
+    - constant.string: "\".+\""
+    - comment:
+        start: "#"
+        end: "$"
+        rules:
+          - language: "language:( +)?pt"

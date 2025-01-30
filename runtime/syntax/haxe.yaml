@@ -1,0 +1,17 @@
+filetype: haxe
+detect:
+    filename: "\\.hx$"
+rules:
+    - type.keyword: "\\b(class|interface|enum|typedef|abstract)\\b"
+    - statement: "\\b(if|else|while|do|for|switch|case|default|break|continue|return|try|catch|throw|new|in)\\b"
+    - preproc: "\\b(import|using|package)\\b"
+    - constant: "\\b(true|false|null)\\b"
+    - identifier.class: "\\b[A-Z][a-zA-Z0-9_]*\\b"
+    - identifier.function: "\\b[a-z][a-zA-Z0-9_]*\\b\\("
+    - constant.number: "\\b(\\d+\\.\\d+|\\d+\\.\\d+[eE][+-]?\\d+|\\d+[eE][+-]?\\d+|0x[0-9a-fA-F]+)\\b"
+    - constant.string: "'([^'\\\\]|\\\\.)*'"
+    - constant.string: "\"([^\"\\\\]|\\\\.)*\""
+    - symbol.operator: "[+\\-*/%=<>&|!]+"
+    - symbol.brackets: "[{}\\[\\]\\(\\)]"
+    - comment: "//.*$"
+    - comment: "/\\*.*?\\*/"

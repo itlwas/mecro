@@ -1,0 +1,43 @@
+filetype: zscript
+detect:
+    filename: "(?i)\\.z(c|sc)$"
+rules:
+    - preproc: "(?i)#include"
+    - preproc: "(?i)version"
+    - symbol.tag: "(?i)[a-z0-9.]+:"
+    - symbol.tag: "(?i)goto [a-z0-9]+[\\+0-9]*"
+    - identifier.class: "(?i)class +[a-z0-9_]+ *((:) +[a-z0-9.]+)?"
+    - identifier: "(?i)[\\.]*[a-z0-9_]+[ ]*[(]+"
+    - type: "(?i)\\b(actor|object|vector2|vector3|name|string|color|sound|void|double|bool|int|float|float64|uint8|uint16|uint|int8|int16|TextureID|SpriteID|Array|voidptr|short|action|state|statelabel)\\b"
+    - statement: "(?i)\\b(class|default|private|static|native|return|if|else|for|while|do|deprecated|null|readonly|true|false|struct|extend|clearscope|vararg|ui|play|virtual|virtualscope|meta|Property|in|out|states|override|super|is|let|const|replaces|protected|self|abstract|enum|switch|case)\\b"
+    - special: "(?i)\\b(goto|loop|stop|break|continue|fail)\\b"
+    - symbol.operator: "[\\-+/*=<>?:!~%&|]"
+    - symbol.brackets: "[(){}]|\\[|\\]"
+    - constant.bool: "(?i)(\\b(true|false)\\b|NULL)"
+    - constant.number: "(?i)\\b([0-9][.]*[0-9]*)+?\\b"
+    - constant.number: "(?i)\\b(0x[A-Fa-f0-9_]+)?\\b"
+    - constant.number: "(?i)\\b(0b[0-1_]+)[FL]?\\b"
+    - constant.string:
+        start: "\""
+        end: "\""
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\([btnfr]|'|\\\"|\\\\)"
+            - constant.specialChar: "\\\\u[A-Fa-f0-9]{4}"
+    - constant.string:
+        start: "'"
+        end: "'"
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\([btnfr]|'|\\\"|\\\\)"
+            - constant.specialChar: "\\\\u[A-Fa-f0-9]{4}"
+    - comment:
+        start: "//"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME):?"
+    - comment:
+        start: "/\\*"
+        end: "\\*/"
+        rules:
+            - todo: "(TODO|XXX|FIXME):?"

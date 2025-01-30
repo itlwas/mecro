@@ -1,0 +1,46 @@
+filetype: 'kdl'
+detect:
+  filename: "\\.kdl"
+rules:
+  - symbol.operator: '='
+  - symbol.brackets: '[{}]'
+  - constant.string:
+      start: '"'
+      end: '"'
+      skip: '(\\\\\|\\")'
+      rules:
+        - constant.specialChar: '\\u[[:xdigit:]]{1,6}'
+        - constant.specialChar: '\\[btnfr"\\]'
+  - constant.string:
+      start: '\br"'
+      end: '"'
+      rules: []
+  - constant.string:
+      start: '\br#"'
+      end: '"#'
+      rules: []
+  - constant.string:
+      start: '\br##"'
+      end: '"##'
+      rules: []
+  - constant.string:
+      start: '\br###"'
+      end: '"###'
+      rules: []
+  - constant.number: '[-+]?(\d+)'
+  - constant.number: '[-+]?(\d+)\.\d*'
+  - constant.bool.true: '\btrue\b'
+  - constant.bool.false: '\bfalse\b'
+  - comment:
+      start: '//'
+      end: '$'
+      rules:
+        - todo: '(TODO|FIXME|XXX|NOTE)'
+  - comment.block:
+      start: '^\s*/-'
+      end: '\s'
+      rules: []
+  - comment.block:
+      start: '/-{'
+      end: '}'
+      rules: []

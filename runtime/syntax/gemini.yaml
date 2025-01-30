@@ -1,0 +1,12 @@
+filetype: gemini
+detect:
+    filename: "\\.(gmi|gemini)$"
+rules:
+    - constant: "^=>[[:space:]].*"
+    - special:
+        start: "^```"
+        end: "^```"
+        rules: []
+    - special:  "^#{1,3}.*"
+    - identifier: "^\\*[[:space:]]"
+    - statement:  "^>.*"

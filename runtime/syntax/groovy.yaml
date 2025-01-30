@@ -1,0 +1,72 @@
+filetype: groovy
+detect:
+    filename: "(\\.(groovy|gy|gvy|gsh|gradle)$|^[Jj]enkinsfile$)"
+    header: "^#!.*/(env +)?groovy *$"
+rules:
+    - identifier: "\\b[A-Z_$]+\\b"
+    - identifier.class: "\\b[A-Z][a-zA-Z0-9$]+\\b"
+    - type: "\\b(byte|short|int|long|float|double|char|boolean|void)\\b"
+    - type.keyword: "\\b(private|public|protected|static|final|var|def)\\b"
+    - statement: "\\b(for|while|do|if|else|switch|case|default|try|catch|finally)\\b"
+    - statement: "\\b(break|continue|return|throw|assert)\\b"
+    - statement: "\\b(package|import|class|interface|trait|enum|extends|implements|throws)\\b"
+    - statement: "\\b(this|super)\\b"
+    - statement: "\\b(goto|const)\\b"
+    - symbol.operator: "[-+*/%=<>^~&|!?:;,.@]|\\b(in|is|as|instanceof|new)\\b"
+    - symbol.brackets: "[(){}]|\\[|\\]"
+    - constant.number: "(?i)\\b[1-9]([_0-9]*[0-9])?[GLIDF]?\\b"
+    - constant.number: "(?i)\\b0b[01]([01_]*[01])?[GLIDF]?\\b"
+    - constant.number: "(?i)\\b0[0-7]([0-7_]*[0-7])?[GLIDF]?\\b"
+    - constant.number: "(?i)\\b0x[0-9a-fA-F]([0-9a-f_]*[0-9a-fA-F])?[GLIDF]?\\b"
+    - constant.number: "(?i)\\b[0-9]([0-9_]*[0-9])?([.][0-9]([0-9_]*[0-9])?)?(e[+-]?[0-9]([0-9_]*[0-9])?)?[DF]?\\b"
+    - constant.bool: "\\b(true|false|null)\\b"
+    - identifier: "@[A-Za-z_$][A-Za-z0-9_$]*\\b"
+    - constant.string:
+        start: "'"
+        end: "'"
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\([\"'bfnrst\\x24\\\\]|u[a-fA-F0-9]{4})"
+    - constant.string:
+        start: "\""
+        end: "\""
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\([\"'bfnrst\\x24\\\\]|u[a-fA-F0-9]{4})"
+            - identifier.var: "\\x24[\\w\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF\u0100-\uFFFE]+([.][a-zA-Z0-9_\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF\u0100-\uFFFE]+)*"
+            - identifier: "\\x24[{].*[}]"
+    - constant.string:
+        start: "\"\"\""
+        end: "\"\"\""
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\([\"'bfnrst\\x24\\\\]|u[a-fA-F0-9]{4})"
+            - identifier.var: "\\x24[\\w\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF\u0100-\uFFFE]+([.][a-zA-Z0-9_\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF\u0100-\uFFFE]+)*"
+            - identifier:
+                start: "[$][{]"
+                end: "[}]"
+                rules: []
+    - constant.string:
+        start: "'''"
+        end: "'''"
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\([\"'bfnrst\\x24\\\\]|u[a-fA-F0-9]{4})"
+    - constant.string:
+        start: "[$]/"
+        end: "/[$]"
+        rules: []
+    - comment:
+        start: "//"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME):?"
+    - comment:
+        start: "/[*]"
+        end: "[*]/"
+        rules:
+            - todo: "(TODO|XXX|FIXME):?"
+    - comment:
+        start: "/[*][*]@?"
+        end: "[*]/"
+        rules: []

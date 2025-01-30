@@ -1,0 +1,5 @@
+filetype: filemanager
+detect:
+    filename: "^filemanager$"
+rules:
+    - special: "^\\.\\.$|\\-\\s.*|\\+\\s.*"
