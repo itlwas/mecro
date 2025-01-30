@@ -2,8 +2,12 @@
 
 > Modeless terminal text editor with enhanced customization.
 
-**Mecro** is fork of Macro/Micro, focused on improved theming, syntax support, and intuitive configuration.  
+**Mecro** is a fork of [Macro](https://github.com/shkschneider/macro)/[Micro](https://github.com/zyedidia/micro), focused on improved theming, syntax support, and intuitive configuration.  
 Maintains compatibility with Micro's ecosystem while adding unique features.
+
+## ⚠️ Note for Users
+This is **a personal passion project** created because I loved using [Micro](https://github.com/zyedidia/micro). It is not intended to be a fully supported editor.  
+**No active maintenance, bug fixes, or major innovations are promised** — treat it as an experimental fork for tinkering and customization!
 
 ## Key Features
 - **170+ languages** with syntax highlighting
@@ -35,8 +39,8 @@ make build
 
 ## Documentation
 - In-editor help: Type `> help` followed by topics like `keybindings`, `plugins`, or `colors`
-- **For plugin licenses/development**, refer to upstream [Macro](https://github.com/shkschneider/macro)
-- Micro upstream docs: [micro-editor.github.io](https://micro-editor.github.io)
+- **For licenses of plugins, colorschemes, or other assets** not explicitly included here, refer to the upstream [Macro](https://github.com/shkschneider/macro) repository
+- [Micro](https://github.com/zyedidia/micro) upstream docs: [micro-editor.github.io](https://micro-editor.github.io)
 
 ## Notes
 - **Linux clipboard**: Requires `xclip`/`xsel` (X11) or `wl-clipboard` (Wayland)
