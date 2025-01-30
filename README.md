@@ -46,4 +46,3 @@ make build
 ---
 
 Lightweight • Hackable • Compatible with Micro plugins • Integrated File Explorer
-```
